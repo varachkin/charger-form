@@ -1,10 +1,11 @@
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {LANGUAGES_CONFIG} from "../locales"
 import {Footer} from "../components/Footer";
 import {useEffect, useState} from "react";
 import {Modal} from "../components/Modal";
 import {TextField} from "@mui/material";
 import {ButtonCustom} from "../components/ButtonCustom";
+import {changeLanguage} from "../features/actions/actionsSlice";
 
 
 const RegExps = {
@@ -23,6 +24,7 @@ export const FormPage = () => {
     const [isFormSent, setIsFormSent] = useState(false);
     const [queryParams, setQueryParams] = useState(null)
     const {language} = useSelector(state => state.actionReducer)
+    const dispatch = useDispatch();
     const [form, setForm] = useState({
         email: '',
         firstName: '',
@@ -107,6 +109,9 @@ export const FormPage = () => {
         const query = getQueryParams(window.location.search)
         console.log(query)
         if (query) {
+            if(query.language){
+                dispatch(changeLanguage(query.language))
+            }
             setQueryParams(query)
         }
     }, [])
