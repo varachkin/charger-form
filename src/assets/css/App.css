@@ -5,7 +5,7 @@
 
 :root {
     --main-background-color: #F9F9F9;
-    --header-background-color: linear-gradient(#F9F9F9 65%, rgba(249, 249, 249, 0.38));
+    --header-background-color: linear-gradient(#F9F9F9 70%, rgba(249, 249, 249, 0.07));
     --main-color: #000000;
     --main-font-size: 4vw;
     --disable-color: #5E5E5E;

@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux"
 import {LANGUAGES_CONFIG} from "../locales"
 import {Footer} from "../components/Footer";
-import { useState} from "react";
+import {useEffect, useState} from "react";
 import {Modal} from "../components/Modal";
 import {TextField} from "@mui/material";
 import {ButtonCustom} from "../components/ButtonCustom";
@@ -20,7 +20,8 @@ const RegExps = {
 
 export const FormPage = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const [isFormSent, setIsFormSent] = useState(false)
+    const [isFormSent, setIsFormSent] = useState(false);
+    const [queryParams, setQueryParams] = useState(null)
     const {language} = useSelector(state => state.actionReducer)
     const [form, setForm] = useState({
         email: '',
@@ -48,6 +49,12 @@ export const FormPage = () => {
         require: LANGUAGES_CONFIG[language].FORM.NOTICE_REQUIRED,
         incorrect: LANGUAGES_CONFIG[language].FORM.NOTICE_INCORRECT,
     }
+
+    function getQueryParams(url) {
+        const queryStringWithoutQuestionMark = url.substring(1);
+        return queryStringWithoutQuestionMark ? JSON.parse(decodeURIComponent(queryStringWithoutQuestionMark)) : null
+    }
+
     const handleOpenModal = () => {
         setIsOpenModal(true)
     }
@@ -61,10 +68,10 @@ export const FormPage = () => {
         setFormErrors(prev => ({...prev, [id]: null}))
     }
 
-    const handleBlur = (event)=> {
+    const handleBlur = (event) => {
         console.log('blur')
         const {value} = event.target;
-        if(value.length === 5 && /^\d+$/.test(value)){
+        if (value.length === 5 && /^\d+$/.test(value)) {
             setForm(prev => ({...prev, postcode: value.slice(0, 2) + '-' + value.slice(2)}))
         }
     }
@@ -92,7 +99,22 @@ export const FormPage = () => {
         }
     }
 
-    if(isFormSent){
+    useEffect(() => {
+
+    }, [queryParams])
+
+    useEffect(() => {
+        const query = getQueryParams(window.location.search)
+        console.log(query)
+        if (query) {
+            setQueryParams(query)
+        }
+    }, [])
+
+    if(!queryParams){
+        return <h1 className='title'>NO params</h1>
+    }
+    if (isFormSent) {
         return (
             <>
                 <div>
