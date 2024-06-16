@@ -1,0 +1,58 @@
+export const LANGUAGES_CONFIG = {
+    pl: {
+        FORM: {
+            TITLE: 'Dane do faktury',
+            SUBTITLE_1: 'Aby otrzymać fakturę za usługę ładowania prosimy o podanie ',
+            SUBTITLE_2: 'poniższych danych. ',
+            SUBTITLE_PRINCIPLES: 'Zapoznaj się z naszymi ',
+            SUBTITLE_PRINCIPLES_LINK: 'zasadami przetwarzania danych osobowych.',
+            EMAIL_TITLE: 'Wyślij fakturę na:',
+            DATA_TITLE: 'Dane do faktury:',
+            ERROR_TITLE_INJECT: 'wszystkich ',
+            ERROR_MESSAGE_REQUIRE: 'Pole wymagane.',
+            FIELD_EMAIL: 'Twój Email',
+            FIELD_NAME: 'Imię',
+            FIELD_LAST_NAME: 'Nazwisko',
+            FIELD_COMPANY: 'Nazwa firmy',
+            FIELD_NIP: 'NIP',
+            FIELD_ADDRESS: 'Ulica i numer',
+            FIELD_CITY: 'Miasto',
+            FIELD_ZIP: 'Kod pocztowy',
+        },
+        BUTTONS: {
+            BACK: 'wstecz',
+            SUBMIT_BUTTON: 'Zatwierdź dane',
+        },
+        MODAL: {
+            PARAGRAPH: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+        }
+    },
+    en: {
+        FORM: {
+            TITLE: 'Invoice Details',
+            SUBTITLE_1: 'To receive an invoice for the charging service, please provide ',
+            SUBTITLE_2: 'the following details. ',
+            SUBTITLE_PRINCIPLES: 'Familiarize yourself with our ',
+            SUBTITLE_PRINCIPLES_LINK: 'personal data processing principles.',
+            EMAIL_TITLE: 'Send invoice to:',
+            DATA_TITLE: 'Invoice details:',
+            ERROR_TITLE_INJECT: 'all ',
+            ERROR_MESSAGE_REQUIRE: 'Field required.',
+            FIELD_EMAIL: 'Your Email',
+            FIELD_NAME: 'First Name',
+            FIELD_LAST_NAME: 'Last Name',
+            FIELD_COMPANY: 'Company Name',
+            FIELD_NIP: 'NIP (Tax ID)',
+            FIELD_ADDRESS: 'Street and number',
+            FIELD_CITY: 'City',
+            FIELD_ZIP: 'Postal Code',
+        },
+        BUTTONS: {
+            BACK: 'back',
+            SUBMIT_BUTTON: 'Submit details',
+        },
+        MODAL: {
+            PARAGRAPH: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+        }
+    }
+}
