@@ -53,7 +53,6 @@ section {
 }
 
 .main {
-    margin-top: 10vh;
     flex: 1;
     height: 88vh;
     padding: 3vw;
@@ -91,7 +90,7 @@ button {
 }
 
 .subtitle {
-    text-align: start;
+    text-align: center;
     font-size: 4.75vw;
     padding: 1vw;
     font-weight: 400;
@@ -99,6 +98,15 @@ button {
 
 .subtitle.start{
     text-align: start;
+}
+
+h2.subtitle {
+    text-align: center;
+    font-size: 5.25vw;
+    padding: 7vw 0;
+    font-weight: 400;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 h3.subtitle {
@@ -172,7 +180,7 @@ button.button.outlined:active, button.button.outlined:focus, button.button.outli
 }
 
 .article {
-    font-size: 2.5vw;
+    font-size: 3.5vw;
     color: #000000;
     padding: 3vw;
 }

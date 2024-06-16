@@ -2,6 +2,8 @@ export const LANGUAGES_CONFIG = {
     pl: {
         FORM: {
             TITLE: 'Dane do faktury',
+            TITLE_SUCCESS: 'Twoje dane zostały wysłane pomyślnie.',
+            SUBTITLE_SUCCESS: 'Dziękujemy',
             SUBTITLE_1: 'Aby otrzymać fakturę za usługę ładowania prosimy o podanie ',
             SUBTITLE_2: 'poniższych danych. ',
             SUBTITLE_PRINCIPLES: 'Zapoznaj się z naszymi ',
@@ -18,6 +20,8 @@ export const LANGUAGES_CONFIG = {
             FIELD_ADDRESS: 'Ulica i numer',
             FIELD_CITY: 'Miasto',
             FIELD_ZIP: 'Kod pocztowy',
+            NOTICE_REQUIRED: 'Pole wymagane.',
+            NOTICE_INCORRECT: 'Nieprawidłowe pole.',
         },
         BUTTONS: {
             BACK: 'wstecz',
@@ -30,6 +34,8 @@ export const LANGUAGES_CONFIG = {
     en: {
         FORM: {
             TITLE: 'Invoice Details',
+            TITLE_SUCCESS: 'Your data has been sent successfully.',
+            SUBTITLE_SUCCESS: 'Thank you',
             SUBTITLE_1: 'To receive an invoice for the charging service, please provide ',
             SUBTITLE_2: 'the following details. ',
             SUBTITLE_PRINCIPLES: 'Familiarize yourself with our ',
@@ -46,6 +52,8 @@ export const LANGUAGES_CONFIG = {
             FIELD_ADDRESS: 'Street and number',
             FIELD_CITY: 'City',
             FIELD_ZIP: 'Postal Code',
+            NOTICE_REQUIRED: 'Field required.',
+            NOTICE_INCORRECT: 'Incorrect field.',
         },
         BUTTONS: {
             BACK: 'back',

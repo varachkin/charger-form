@@ -4,11 +4,11 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 9;*/
     background: var(--header-background-color);
 }
 
