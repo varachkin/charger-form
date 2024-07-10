@@ -3,7 +3,8 @@ export const LANGUAGES_CONFIG = {
         FORM: {
             TITLE: 'Dane do faktury',
             TITLE_SUCCESS: 'Twoje dane zostały wysłane pomyślnie.',
-            SUBTITLE_SUCCESS: 'Dziękujemy',
+            SUBTITLE_SUCCESS_1: 'Faktura została pomyślnie wysłana na adres',
+            SUBTITLE_SUCCESS_2: 'Możesz zamknąć stronę.',
             SUBTITLE_1: 'Aby otrzymać fakturę za usługę ładowania prosimy o podanie ',
             SUBTITLE_2: 'poniższych danych. ',
             SUBTITLE_PRINCIPLES: 'Zapoznaj się z naszymi ',
@@ -29,7 +30,7 @@ export const LANGUAGES_CONFIG = {
         },
         MODAL: {
             PRIVACY_POLICY_TITLE: 'Polityka Prywatności',
-            PARAGRAPH: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 
+            PARAGRAPH: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         },
         ERROR: {
             ERROR_TITLE: 'Nie można zidentyfikować transakcji.',
@@ -40,7 +41,8 @@ export const LANGUAGES_CONFIG = {
         FORM: {
             TITLE: 'Invoice Details',
             TITLE_SUCCESS: 'Your data has been sent successfully.',
-            SUBTITLE_SUCCESS: 'Thank you',
+            SUBTITLE_SUCCESS_1: 'The invoice has been successfully sent to the address',
+            SUBTITLE_SUCCESS_2: 'You can close the page.',
             SUBTITLE_1: 'To receive an invoice for the charging service, please provide ',
             SUBTITLE_2: 'the following details. ',
             SUBTITLE_PRINCIPLES: 'Familiarize yourself with our ',

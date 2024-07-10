@@ -96,6 +96,10 @@ button {
     font-weight: 400;
 }
 
+.subtitle.center{
+    text-align: center;
+}
+
 .subtitle.start{
     text-align: start;
 }

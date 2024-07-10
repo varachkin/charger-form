@@ -5,15 +5,16 @@ import { useEffect, useState } from "react";
 import { Modal } from "../components/Modal";
 import { TextField } from "@mui/material";
 import { ButtonCustom } from "../components/ButtonCustom";
-import { changeLanguage } from "../features/actions/actionsSlice";
+import { changeLanguage, setQueryParam } from "../features/actions/actionsSlice";
+import { sendData } from "../API";
 
 
 const RegExps = {
     regExp_email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-    regExp_firstName: /[A-Za-z]/,
-    regExp_lastName: /[A-Za-z]/,
+    regExp_first_name: /[A-Za-z]/,
+    regExp_last_name: /[A-Za-z]/,
     regExp_company: /[\s\S]/,
-    regExp_nip: /^\d{10}$/,
+    regExp_nip: /^\d{12}$/,
     regExp_address: /[\s\S]/,
     regExp_postcode: /^\d{2}-\d{3}$/,
     regExp_city: /[\s\S]/,
@@ -22,13 +23,12 @@ const RegExps = {
 export const FormPage = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [isFormSent, setIsFormSent] = useState(false);
-    const [queryParams, setQueryParams] = useState(null)
-    const { language } = useSelector(state => state.actionReducer)
+    const { language, query_param } = useSelector(state => state.actionReducer)
     const dispatch = useDispatch();
     const [form, setForm] = useState({
         email: '',
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         company: '',
         nip: '',
         address: '',
@@ -38,8 +38,8 @@ export const FormPage = () => {
 
     const [formErrors, setFormErrors] = useState({
         email: null,
-        firstName: null,
-        lastName: null,
+        first_name: null,
+        last_name: null,
         company: null,
         nip: null,
         address: null,
@@ -116,16 +116,23 @@ export const FormPage = () => {
     const handleSubmit = () => {
         const hasError = handleValidateAll()
         if (!hasError.length) {
-            setIsFormSent(true)
-            console.log('SEND REQUEST')
+            sendData(query_param.transactionID, form)
+            .then(response=> {
+                if(response){
+                    setIsFormSent(true)
+                    console.log('SEND REQUEST')
+                }else{
+                    console.log(response)
+                   
+                }
+            })
+            
+            
         } else {
             console.log("THERE ARE ERRORS. IT'S IMPOSSIBLE TO SEND REQUEST")
         }
     }
 
-    useEffect(() => {
-
-    }, [queryParams])
 
     useEffect(() => {
         const query = getQueryParams(window.location.search)
@@ -134,18 +141,18 @@ export const FormPage = () => {
             if (query.language) {
                 dispatch(changeLanguage(query.language))
             }
-            setQueryParams(query)
+            dispatch(setQueryParam(query))
         }
     }, [])
 
 
-    console.log(formErrors)
-    if (!queryParams) {
+    console.log(form)
+    if (!query_param) {
         return (
-            <>
+            <div>
                 <h1 className='title'>{LANGUAGES_CONFIG[language].ERROR.ERROR_TITLE}</h1>
-                <h2 className="subtitle">{LANGUAGES_CONFIG[language].ERROR.ERROR_SUBTITLE}</h2>
-            </>
+                <h3 className="subtitle center">{LANGUAGES_CONFIG[language].ERROR.ERROR_SUBTITLE}</h3>
+            </div>
         )
     }
     if (isFormSent) {
@@ -153,9 +160,12 @@ export const FormPage = () => {
             <>
                 <div>
                     <h1 className="title"> {LANGUAGES_CONFIG[language].FORM.TITLE_SUCCESS}</h1>
-                    <h2 className="subtitle">
-                        {LANGUAGES_CONFIG[language].FORM.SUBTITLE_SUCCESS}
-                    </h2>
+                    <h3 className="subtitle center">
+                        {LANGUAGES_CONFIG[language].FORM.SUBTITLE_SUCCESS_1} <span className="bold">{form.email}</span>
+                    </h3>
+                    <h3 className="subtitle center">
+                        {LANGUAGES_CONFIG[language].FORM.SUBTITLE_SUCCESS_2}
+                    </h3>
                 </div>
 
             </>
@@ -182,7 +192,6 @@ export const FormPage = () => {
                     </h3>
                     <div className='input-wrapper'>
                         <TextField
-
                             tabIndex={1}
                             variant='outlined'
                             fullWidth
@@ -207,13 +216,13 @@ export const FormPage = () => {
                             tabIndex={2}
                             variant='outlined'
                             fullWidth
-                            id='firstName'
+                            id='first_name'
                             onChange={handleChangeForm}
                             onBlur={handleValidate}
-                            value={form.firstName}
+                            value={form.first_name}
                             label={LANGUAGES_CONFIG[language].FORM.FIELD_NAME}
-                            error={!!formErrors.firstName}
-                            helperText={errorMessages[formErrors.firstName]}
+                            error={!!formErrors.first_name}
+                            helperText={errorMessages[formErrors.first_name]}
                         />
                     </div>
                     <div className='input-wrapper'>
@@ -221,13 +230,13 @@ export const FormPage = () => {
                             tabIndex={3}
                             variant='outlined'
                             fullWidth
-                            id='lastName'
+                            id='last_name'
                             onChange={handleChangeForm}
                             onBlur={handleValidate}
-                            value={form.lastName}
+                            value={form.last_name}
                             label={LANGUAGES_CONFIG[language].FORM.FIELD_LAST_NAME}
-                            error={!!formErrors.lastName}
-                            helperText={errorMessages[formErrors.lastName]}
+                            error={!!formErrors.last_name}
+                            helperText={errorMessages[formErrors.last_name]}
                         />
                     </div>
                     <div className='input-wrapper'>
