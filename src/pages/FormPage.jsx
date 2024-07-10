@@ -144,6 +144,7 @@ export const FormPage = () => {
                 })
                 .finally(response => {
                     setIsLoading(false)
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 })
 
 
