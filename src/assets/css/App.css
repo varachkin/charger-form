@@ -78,6 +78,10 @@ button {
     margin: 0 auto;
 }
 
+.error{
+    color: rgba(255, 0, 0, 0.568);
+}
+
 .title {
     text-align: center;
     font-size: 6vw;

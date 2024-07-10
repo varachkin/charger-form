@@ -178,8 +178,7 @@ export const FormPage = () => {
     if (error) {
         return (
             <div>
-                <h1 className='title'>{LANGUAGES_CONFIG[language].ERROR.ERROR_TITLE}</h1>
-                <h3 className="subtitle center error">{error}</h3>
+                <h1 className='title error'>{error}</h1>
                 <h3 className="subtitle center">{LANGUAGES_CONFIG[language].ERROR.ERROR_SUBTITLE}</h3>
             </div>
         )
