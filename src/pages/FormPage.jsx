@@ -24,6 +24,7 @@ export const FormPage = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
     const [isFormSent, setIsFormSent] = useState(false);
+    const [error, setError] = useState('')
     const { language, query_param } = useSelector(state => state.actionReducer)
     const dispatch = useDispatch();
     const [form, setForm] = useState({
@@ -139,6 +140,7 @@ export const FormPage = () => {
                 })
                 .catch(error => {
                     console.log(error)
+                    setError(error.message)
                 })
                 .finally(response => {
                     setIsLoading(false)
@@ -172,6 +174,17 @@ export const FormPage = () => {
             </div>
         )
     }
+
+    if (error) {
+        return (
+            <div>
+                <h1 className='title'>{LANGUAGES_CONFIG[language].ERROR.ERROR_TITLE}</h1>
+                <h3 className="subtitle center error">{error}</h3>
+                <h3 className="subtitle center">{LANGUAGES_CONFIG[language].ERROR.ERROR_SUBTITLE}</h3>
+            </div>
+        )
+    }
+
     if (isFormSent) {
         return (
             <>
