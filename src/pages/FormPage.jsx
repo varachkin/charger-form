@@ -22,6 +22,7 @@ const RegExps = {
 
 export const FormPage = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     const [isFormSent, setIsFormSent] = useState(false);
     const { language, query_param } = useSelector(state => state.actionReducer)
     const dispatch = useDispatch();
@@ -66,8 +67,14 @@ export const FormPage = () => {
 
     const handleChangeForm = (event) => {
         const { id, value } = event.target
-        setForm({ ...form, [id]: value })
-        setFormErrors(prev => ({ ...prev, [id]: null }))
+        if(id === 'postcode' && value?.length === 5){
+            setForm(prev => ({ ...prev, postcode: value.slice(0, 2) + '-' + value.slice(2) }))
+            setFormErrors(prev => ({ ...prev, [id]: null }))
+        }else{
+            setForm({ ...form, [id]: value })
+            setFormErrors(prev => ({ ...prev, [id]: null }))
+        }
+        
     }
 
     const handleBlur = (event) => {
@@ -78,6 +85,7 @@ export const FormPage = () => {
         }
     }
     const handleValidateAll = () => {
+        
         return Object.keys(form)
             .map((key, keys) => {
                 if (!form[key] || !RegExps[`regExp_${key}`].test(form[key])) {
@@ -95,39 +103,48 @@ export const FormPage = () => {
     const handleValidate = (event) => {
         const { value, id } = event.target;
         console.log(value, id)
-        if (!form[id] || !RegExps[`regExp_${id}`].test(form[id]) && id !== 'postcode') {
-            if (!form[id]) {
-                setFormErrors(prev => ({ ...prev, [id]: 'require' }))
-            } else if (!RegExps[`regExp_${id}`].test(form[id])) {
-                setFormErrors(prev => ({ ...prev, [id]: 'incorrect' }))
+        if (id)
+            if (!form[id] || !RegExps[`regExp_${id}`].test(form[id]) && id !== 'postcode') {
+                if (!form[id]) {
+                    setFormErrors(prev => ({ ...prev, [id]: 'require' }))
+                } else if (!RegExps[`regExp_${id}`].test(form[id])) {
+                    setFormErrors(prev => ({ ...prev, [id]: 'incorrect' }))
+                }
+            } else {
+                if (id === 'postcode' && value.length === 5 && /^\d+$/.test(value)) {
+                    setForm(prev => ({ ...prev, postcode: value.slice(0, 2) + '-' + value.slice(2) }))
+                } else if (!form[id]) {
+                    setFormErrors(prev => ({ ...prev, [id]: 'require' }))
+                } else if (!RegExps[`regExp_${id}`].test(form[id])) {
+                    setFormErrors(prev => ({ ...prev, [id]: 'incorrect' }))
+                }
             }
-        } else {
-            if (id === 'postcode' && value.length === 5 && /^\d+$/.test(value)) {
-                setForm(prev => ({ ...prev, postcode: value.slice(0, 2) + '-' + value.slice(2) }))
-            } else if (!form[id]) {
-                setFormErrors(prev => ({ ...prev, [id]: 'require' }))
-            } else if (!RegExps[`regExp_${id}`].test(form[id])) {
-                setFormErrors(prev => ({ ...prev, [id]: 'incorrect' }))
-            }
-        }
 
     }
 
     const handleSubmit = () => {
         const hasError = handleValidateAll()
+        
         if (!hasError.length) {
+            setIsLoading(true)
             sendData(query_param.transactionID, form)
-            .then(response=> {
-                if(response){
-                    setIsFormSent(true)
-                    console.log('SEND REQUEST')
-                }else{
-                    console.log(response)
-                   
-                }
-            })
-            
-            
+                .then(response => {
+                    if (response) {
+                        setIsFormSent(true)
+                        console.log('SEND REQUEST')
+                    } else {
+                        console.log(response)
+
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+                .finally(response => {
+                    setIsLoading(false)
+                })
+
+
         } else {
             console.log("THERE ARE ERRORS. IT'S IMPOSSIBLE TO SEND REQUEST")
         }
@@ -302,7 +319,8 @@ export const FormPage = () => {
                             fullWidth
                             id='postcode'
                             onChange={handleChangeForm}
-                            onBlur={handleValidate}
+                        
+                            onBlur={handleBlur}
                             value={form.postcode}
                             label={LANGUAGES_CONFIG[language].FORM.FIELD_ZIP}
                             error={!!formErrors.postcode}
@@ -312,7 +330,13 @@ export const FormPage = () => {
                 </div>
             </div>
             <Footer>
-                <ButtonCustom onClick={handleSubmit}>{LANGUAGES_CONFIG[language].BUTTONS.SUBMIT_BUTTON}</ButtonCustom>
+                <ButtonCustom
+                    onClick={handleSubmit}
+                    disabled={isLoading}
+                    isLoading={isLoading}
+                >
+                    {LANGUAGES_CONFIG[language].BUTTONS.SUBMIT_BUTTON}
+                </ButtonCustom>
             </Footer>
             {isOpenModal && <Modal handleCloseModal={handleCloseModal}>
                 <h1 className='title'>{LANGUAGES_CONFIG[language].MODAL.PRIVACY_POLICY_TITLE}</h1>

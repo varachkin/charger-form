@@ -1,0 +1,33 @@
+.spinner {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 6.9vw;
+    aspect-ratio: 1/1;
+    text-align: center;
+}
+
+.spinner:before,
+.spinner:after {
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+    box-shadow: 0 0 10px 0.35vw rgba(88, 88, 88, 0.74) inset;
+}
+
+.spinner:after {
+    box-shadow: 0 0.35vw 0 #FF3D00 inset;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}

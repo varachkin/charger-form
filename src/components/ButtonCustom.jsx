@@ -1,17 +1,18 @@
 import { LANGUAGES_CONFIG } from "../locales";
 import { Button } from "@mui/material";
+import { Spinner } from "./Spinner";
 
-export const ButtonCustom = ({ children, onClick, disabled, id, variant='contained' }) => {
+export const ButtonCustom = ({ children, onClick, disabled, id, isLoading, variant='contained' }) => {
     return (
         <Button
             id={id}
             variant={variant}
-            className={`button ${variant}`}
+            className={`button ${variant} ${isLoading || disabled ? 'disabled' : ''}`}
             // color="secondary"
             onClick={onClick}
-            disabled={disabled}
+            disabled={disabled || isLoading}
         >
-            {children}
+            {isLoading ? <Spinner /> : children}
         </Button>
     )
 }
