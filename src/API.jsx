@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const serverIP = "http://0.0.0.0:6006"; 
 // const serverIP = "https://tardis.test.spaco.cloud/api/"
-const serverIP = "http://ec2-3-143-131-213.us-east-2.compute.amazonaws.com:21001/api/v1"
+const serverIP = "https://tardis.exa22.com/api/v1"
 
 // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxODYwMDYxNSwianRpIjoiNjIwMGVlODUtM2Q3NC00YjFkLWI5NmQtNDMwY2ExMDhlNWZiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IiIsIm5iZiI6MTcxODYwMDYxNSwiZXhwIjoxNzIwNDAwNjE1LCJhdWQiOiJhbmRyemVqQHZlbmRvcm9ib3RpY3MuY29tIiwiY2xpZW50X2lkIjoyNywic2NvcGUiOiJQQjAxIn0.H8rpavkyliArvQjuPGWdwyUhsJBLk4rXLoQ0knZVNoI';
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxOTk5NzYyMCwianRpIjoiMjI0NGRhM2UtN2MwZC00Y2M1LTgzMDgtYzUyOTQ4ODZmMjNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IiIsIm5iZiI6MTcxOTk5NzYyMCwiZXhwIjoxNzIxNzk3NjIwLCJhdWQiOiJhbmRyemVqQHZlbmRvcm9ib3RpY3MuY29tIiwiY2xpZW50X2lkIjoyNywic2NvcGUiOiJQQjAxIn0.5j3kZM-0wKmLCUPze2jOokYhm1so2_oE4upIQv0Sqx8';
